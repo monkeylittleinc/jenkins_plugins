@@ -4,7 +4,7 @@ maintainer_email 'cookbooks@monkeylittle.com'
 license          'MIT'
 description      'Installs/Configures jenkins_plugins'
 long_description 'Installs/Configures jenkins_plugins'
-version          '0.1.0'
+version          '0.1.1'
 
 depends 'jenkins'
 depends 'maven'
