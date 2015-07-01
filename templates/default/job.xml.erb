@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<flow-definition plugin="workflow-job@<%= @version %>">
+  <actions/>
+  <description><%= @description %></description>
+  <keepDependencies>false</keepDependencies>
+  <properties/>
+  <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@<%= @version %>">
+    <script>
+    <%= render @script %>
+    </script>
+    <sandbox><%= @sandbox %></sandbox>
+  </definition>
+  <triggers/>
+</flow-definition>
