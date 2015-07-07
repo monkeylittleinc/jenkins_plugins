@@ -75,6 +75,7 @@ def add_key
   file "#{node['jenkins']['master']['home']}/.ssh/id_#{@new_resource.type}_#{@new_resource.name}" do
     owner node['jenkins']['master']['user']
     group node['jenkins']['master']['group']
+    contents @new_resource.key
     mode '0600'
     action :create
   end
