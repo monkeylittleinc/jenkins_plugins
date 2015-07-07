@@ -15,5 +15,5 @@ gem 'berkshelf'
 # end
 
 gem 'thor-foodcritic'
-gem "test-kitchen"
-gem "kitchen-vagrant"
+gem 'test-kitchen'
+gem 'kitchen-vagrant'
