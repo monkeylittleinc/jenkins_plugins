@@ -3,8 +3,8 @@ maintainer       'Monkey Little'
 maintainer_email 'cookbooks@monkeylittle.com'
 license          'MIT'
 description      'Installs/Configures jenkins_plugins'
-long_description 'Installs/Configures jenkins_plugins'
-version          '0.1.1'
+long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
+version          '1.0.0'
 
 depends 'jenkins'
 depends 'maven'

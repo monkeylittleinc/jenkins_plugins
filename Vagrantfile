@@ -34,9 +34,12 @@ Vagrant.configure(2) do |config|
     chef.json = {
       jenkins: {
         master: {
-          version: '1.617-1.1'
-        }
-      }
+          version: '1.617-1.1',
+        },
+      },
+      maven: {
+        install_java: false,
+      },
     }
 
     chef.run_list = %w(

@@ -1,5 +1,5 @@
 # jenkins_plugins Cookbook
-[![Build Status](https://travis-ci.org/monkeylittleinc/jenkins_plugins.svg)](https://travis-ci.org/monkeylittleinc/jenkins_plugins)
+[![Build Status](https://travis-ci.org/monkeylittleinc/jenkins_plugins.svg)](https://travis-ci.org/monkeylittleinc/jenkins_plugins) [![Cookbook Version](https://img.shields.io/cookbook/v/jenkins_plugins.svg)](https://supermarket.chef.io/cookbooks/jenkins_plugins) [![GitHub license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/monkeylittleinc/jenkins_plugins)
 
 This cookbook is designed to add an LWRPs around interacting with Jenkins Plugins.
 
@@ -30,7 +30,68 @@ end
 
 ```ruby
 jenkins_plugins_maven 'M3'
+    install false
+end
 ```
+
+### jenkins_plugins_git
+
+```ruby
+jenkins_plugins_git 'git' do
+    install true
+    install_system false
+    global_name '
+    global_email '
+    create_account false
+    home 'git'
+    version ''
+    system_version ''
+    configure_ssh false
+    ssh_host ''
+    ssh_hostname ''
+    ssh_port 22
+    ssh_key ''
+    ssh_strict_host_checking true
+end
+```
+
+### jenkins_plugins_ssh
+
+```ruby
+jenkins_plugins_ssh 'name_for_key' do
+    host '' # Required
+    hostname '' # Optional
+    port 22 # Optional
+    key '' # Required
+    type 'rsa' # Optional - Can be ['rsa', 'dsa', 'ecdsa']
+    strict_host_checking true # Optional
+end
+```
+
+#### :add
+This action will check for a key in the following format:
+
+```ruby
+#{jenkins_home}/.ssh/id_#{key_type}_#{name}
+```
+
+If this key does not exist the LWRP will add it and add your ssh configuration values also.
+
+If the ssh config file already exists it will append the new block to the end of the file.
+
+#### :update
+**_TODO_**
+
+#### :remove
+This action will check for a key in the following format:
+
+```ruby
+#{jenkins_home}/.ssh/id_#{key_type}_#{name}
+```
+
+If this key exists the LWRP will remove it.
+
+**_TODO_**: Remove block from ssh config file
 
 ## Development
 Please see the [Contributing](CONTRIBUTING.md) and [Issue Reporting](ISSUES.md) Guidelines.
