@@ -6,7 +6,7 @@
   <properties/>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@<%= @version %>">
     <script>
-    <%= render @script %>
+    <%= render @script, variables: @variables %>
     </script>
     <sandbox><%= @sandbox %></sandbox>
   </definition>
