@@ -11,10 +11,20 @@ This cookbook is designed to add an LWRPs around interacting with Jenkins Plugin
 - `jenkins`
 - `maven`
 
-## Resources
-All examples show default values
+## Plugins Available
+1. [Workflow](#jenkins_plugins_workflow)
+2. [Maven](#jenkins_plugins_maven)
+3. [Git](#jenkins_plugins_git)
+4. [SSH Keys](#jenkins_plugins_ssh_key)
+5. [SSH Config](#jenkins_plugins_ssh_config)
 
+--------------------------------------------------------------------------------
+
+## Resources
 ### jenkins_plugins_workflow
+> The Workflow plugin suite attempts to make it possible to directly write that script, what people often call a workflow (sometimes abbreviated flow), while integrating with Jenkins features like slaves and publishers.
+
+- [Workflow Plugin Home](https://wiki.jenkins-ci.org/display/JENKINS/Workflow+Plugin)
 
 ```ruby
 jenkins_plugins_workflow 'my-first-workflow-job' do
@@ -26,7 +36,10 @@ jenkins_plugins_workflow 'my-first-workflow-job' do
 end
 ```
 
+--------------------------------------------------------------------------------
+
 ### jenkins_plugins_maven
+- [Maven Plugin Home]()
 
 ```ruby
 jenkins_plugins_maven 'M3'
@@ -34,14 +47,17 @@ jenkins_plugins_maven 'M3'
 end
 ```
 
+--------------------------------------------------------------------------------
+
 ### jenkins_plugins_git
+- [Git Plugin Home](https://wiki.jenkins-ci.org/display/JENKINS/Git+Plugin)
 
 ```ruby
 jenkins_plugins_git 'git' do
     install true
     install_system false
-    global_name '
-    global_email '
+    global_name ''
+    global_email ''
     create_account false
     home 'git'
     version ''
@@ -55,16 +71,14 @@ jenkins_plugins_git 'git' do
 end
 ```
 
-### jenkins_plugins_ssh
+--------------------------------------------------------------------------------
+### jenkins_plugins_ssh_key
+This LWRP is slightly out of key with everything else. It is not configuring anything Jenkins specific, it is simply
+used to write a private ssh key. This is here to enable the git LWRP to work correctly when needing to authenticate against a repository.
 
 ```ruby
-jenkins_plugins_ssh 'name_for_key' do
-    host '' # Required
-    hostname '' # Optional
-    port 22 # Optional
-    key '' # Required
-    type 'rsa' # Optional - Can be ['rsa', 'dsa', 'ecdsa']
-    strict_host_checking true # Optional
+jenkins_plugins_ssh 'name' do
+	type 'rsa' # Optional - Can be ['rsa', 'dsa', 'ecdsa']
 end
 ```
 
@@ -75,12 +89,11 @@ This action will check for a key in the following format:
 #{jenkins_home}/.ssh/id_#{key_type}_#{name}
 ```
 
-If this key does not exist the LWRP will add it and add your ssh configuration values also.
+If this key does not exist the LWRP will add it.
 
-If the ssh config file already exists it will append the new block to the end of the file.
 
 #### :update
-**_TODO_**
+This action will update the contents of the key file if they have changed.
 
 #### :remove
 This action will check for a key in the following format:
@@ -91,7 +104,10 @@ This action will check for a key in the following format:
 
 If this key exists the LWRP will remove it.
 
-**_TODO_**: Remove block from ssh config file
+
+### jenkins_plugins_ssh_config
+#### TODO
+
 
 ## Development
 Please see the [Contributing](CONTRIBUTING.md) and [Issue Reporting](ISSUES.md) Guidelines.
