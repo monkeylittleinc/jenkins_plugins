@@ -1,4 +1,4 @@
-# Artifactory Pro Cookbook Issues
+# Jenkins Plugins Cookbook Issues
 This file documents the steps necessary to report and issue with the Artifactory Pro cookbook. Following these guidelines will help ensure your issue is resolved in a timely manner.
 
 ## Reporting
@@ -36,4 +36,4 @@ Here's a snippet you can copy-paste into the issue and fill out:
 - Paste backtrace here
 - ```
 
-[Create a ticket](https://github.com/monkeylittleinc/artifactory_pro/issues/new) describing your problem and include the information above.
+[Create a ticket](https://github.com/monkeylittleinc/jenkins_plugins/issues/new) describing your problem and include the information above.
