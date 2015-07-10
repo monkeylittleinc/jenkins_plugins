@@ -66,7 +66,7 @@ def load_current_resource
 end
 
 def git_configured?
-  ::File.exist("#{node['jenkins']['master']['home']}/hudson.plugins.git.GitTool.xml") && ::File.exist("#{node['jenkins']['master']['home']}/hudson.plugins.git.GitSCM.xml")
+  ::File.exist?("#{node['jenkins']['master']['home']}/hudson.plugins.git.GitTool.xml") && ::File.exist?("#{node['jenkins']['master']['home']}/hudson.plugins.git.GitSCM.xml")
 end
 
 def install_system_git
@@ -91,7 +91,7 @@ end
 
 def configure_git_tool
   template "#{node['jenkins']['master']['home']}/hudson.plugins.git.GitTool.xml" do
-    source 'git//git_tool.xml.erb'
+    source 'git/git_tool.xml.erb'
     cookbook 'jenkins_plugins'
     owner node['jenkins']['master']['user']
     group node['jenkins']['master']['group']
