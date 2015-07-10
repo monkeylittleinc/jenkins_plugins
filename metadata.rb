@@ -8,9 +8,9 @@ version          '1.0.1'
 
 depends 'jenkins'
 depends 'maven'
+depends 'ssh'
 
 issues_url 'https://github.com/monkeylittleinc/jenkins_plugins/issues'
-
 source_url 'https://github.com/monkeylittleinc/jenkins_plugins'
 
 supports 'centos'

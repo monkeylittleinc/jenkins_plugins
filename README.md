@@ -61,24 +61,18 @@ jenkins_plugins_git 'git' do
     create_account false
     home 'git'
     version ''
-    system_version ''
-    configure_ssh false
-    ssh_host ''
-    ssh_hostname ''
-    ssh_port 22
-    ssh_key ''
-    ssh_strict_host_checking true
+    client_version ''
 end
 ```
 
 --------------------------------------------------------------------------------
+
 ### jenkins_plugins_ssh_key
-This LWRP is slightly out of key with everything else. It is not configuring anything Jenkins specific, it is simply
-used to write a private ssh key. This is here to enable the git LWRP to work correctly when needing to authenticate against a repository.
+This LWRP is slightly out of key with everything else. It is not configuring anything Jenkins specific, it is simply used to write a private ssh key. This is here to enable the git LWRP to work correctly when needing to authenticate against a repository.
 
 ```ruby
 jenkins_plugins_ssh 'name' do
-	type 'rsa' # Optional - Can be ['rsa', 'dsa', 'ecdsa']
+    type 'rsa' # Optional - Can be ['rsa', 'dsa', 'ecdsa']
 end
 ```
 
@@ -90,7 +84,6 @@ This action will check for a key in the following format:
 ```
 
 If this key does not exist the LWRP will add it.
-
 
 #### :update
 This action will update the contents of the key file if they have changed.
@@ -104,11 +97,8 @@ This action will check for a key in the following format:
 
 If this key exists the LWRP will remove it.
 
-
 ### jenkins_plugins_ssh_config
 #### TODO
-
-
 ## Development
 Please see the [Contributing](CONTRIBUTING.md) and [Issue Reporting](ISSUES.md) Guidelines.
 

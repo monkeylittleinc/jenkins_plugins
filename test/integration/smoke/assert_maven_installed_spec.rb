@@ -1,0 +1,1 @@
+../../integration/jenkins_plugins_maven_install/serverspec/assert_install_spec.rb
