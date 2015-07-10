@@ -1,0 +1,1 @@
+../../integration/jenkins_plugins_ssh_config_add/serverspec/assert_add_spec.rb
