@@ -1,6 +1,6 @@
 #
-# Cookbook Name:: artifactory_pro
-# Resource:: ssh
+# Cookbook Name:: jenkins_plugins
+# Provider:: ssh_config
 #
 # Copyright (C) 2015 Monkey Little
 #
@@ -24,15 +24,34 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
 
-actions [:add, :update, :remove]
+def whyrun_supported?
+  false
+end
 
-default_action :add
+action :add do
+  ssh_config new_resource.name do
+    options new_resource.options
+    user node['jenkins']['master']['user']
+    group node['jenkins']['master']['group']
+    path "#{node['jenkins']['master']['home']}/.ssh/config"
+  end
+end
 
-attribute :host, kind_of: String
-attribute :hostname, kind_of: String
-attribute :port, kind_of: Integer
-attribute :key, kind_of: String
-attribute :type, equal_to: %w(dsa rsa ecdsa), default: 'rsa'
-attribute :strict_host_checking, kind_of: [TrueClass, FalseClass], default: true
+action :update do
+  ssh_config new_resource.name do
+    action :remove
+  end
 
-attr_accessor :exists
+  ssh_config new_resource.name do
+    options new_resource.options
+    user node['jenkins']['master']['user']
+    group node['jenkins']['master']['group']
+    path "#{node['jenkins']['master']['home']}/.ssh/config"
+  end
+end
+
+action :remove do
+  ssh_config new_resource.name do
+    action :remove
+  end
+end

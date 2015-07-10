@@ -6,15 +6,11 @@ RuboCop::RakeTask.new(:rubocop)
 
 FoodCritic::Rake::LintTask.new(:foodcritic)
 
-RSpec::Core::RakeTask.new(:chefspec) do |t|
-  t.rspec_opts = [].tap do |a|
-    a.push('--exclude-pattern \'spec/jenkins-plugins/**/*_spec.rb\'')
-  end.join(' ')
+begin
+  require "kitchen/rake_tasks"
+  Kitchen::RakeTasks.new
+rescue LoadError
+  puts ">>>>> Kitchen gem not loaded, omitting tasks" unless ENV["CI"]
 end
 
-RSpec::Core::RakeTask.new(:serverspec) do |_t|
-  sh 'vagrant up'
-end
-
-task default: [:rubocop, :foodcritic, :chefspec]
-task all: [:default, :serverspec]
+task default: [:rubocop, :foodcritic]

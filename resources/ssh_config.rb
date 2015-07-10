@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: jenkins_plugins
-# Recipe:: default
+# Resource:: ssh_config
 #
 # Copyright (C) 2015 Monkey Little
 #
@@ -23,3 +23,9 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
+
+actions [:add, :update, :remove]
+
+default_action :add
+
+attribute :options, kind_of: Hash
