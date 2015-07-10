@@ -3,7 +3,7 @@ require_relative '../../../kitchen/data/spec_helper'
 describe file('/var/lib/jenkins/.ssh/id_rsa_sam') do
   it { should exist }
   it { should be_file }
-  it {
+  it do
     should contain <<-KEY
     -----BEGIN RSA PRIVATE KEY-----
     MIIJKQIBAAKCAgEAv39xGNZys5hEU6UBvunu8nFDBrNgOmi8jmGnsZ+LPtjoekf/
@@ -14,7 +14,7 @@ describe file('/var/lib/jenkins/.ssh/id_rsa_sam') do
     Lq0RUv8o9j9irNTawiDMa/uYUMTy6ZHjrqoMKNwfjCGbX6BOLDC5dOMBz5/haYYR
     -----END RSA PRIVATE KEY-----
     KEY
-  }
+  end
   it { should be_mod '0600' }
   it { should be_owned_by 'jenkins' }
 end
