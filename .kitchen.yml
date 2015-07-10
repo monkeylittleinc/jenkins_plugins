@@ -1,0 +1,80 @@
+---
+driver:
+  name: vagrant
+  customize:
+    cpus: 2
+    memory: 1024
+  network:
+    - - forwarded_port
+      - guest: 8080
+        host: 8080
+        auto_correct: true
+
+provisioner:
+  name: chef_zero
+  data_path: test/shared
+  data_bags_path: test/fixtures/data_bags
+  attributes:
+    jenkins:
+      master:
+        version: 1.617-1.1
+    maven:
+      install_java: false
+
+platforms:
+  - name: centos-6.5
+    box: chef/centos-6.5
+    run_list:
+      - jenkins::java
+      - jenkins::master
+  - name: centos-6.6
+    box: chef/centos-6.6
+    run_list:
+      - jenkins::java
+      - jenkins::master
+  - name: centos-7.0
+    box: chef/centos-7.0
+    run_list:
+      - jenkins::java
+      - jenkins::master
+
+
+suites:
+  # Smoke suite
+  - name: smoke
+    run_list: smoke::default
+
+  # Maven suites
+  - name: jenkins_plugins_maven_install
+    run_list: jenkins_plugins_maven::install
+  - name: jenkins_plugins_maven_configure
+    run_list: jenkins_plugins_maven::configure
+  - name: jenkins_plugins_maven_remove
+    run_list: jenkins_plugins_maven::remove
+
+  # Git suites
+  - name: jenkins_plugins_git_install
+    run_list: jenkins_plugins_git::install
+  - name: jenkins_plugins_git_configure
+    run_list: jenkins_plugins_git::configure
+
+  # SSH suites
+  - name: jenkins_plugins_ssh_key_add
+    run_list: jenkins_plugins_ssh_key::add
+  - name: jenkins_plugins_ssh_key_update
+    run_list: jenkins_plugins_ssh_key::update
+  - name: jenkins_plugins_ssh_key_remove
+    run_list: jenkins_plugins_ssh_key::remove
+
+  - name: jenkins_plugins_ssh_config_add
+    run_list: jenkins_plugins_ssh_config::add
+  - name: jenkins_plugins_ssh_config_update
+    run_list: jenkins_plugins_ssh_config::update
+  - name: jenkins_plugins_ssh_config_remove
+    run_list: jenkins_plugins_ssh_config::remove
+
+  # Workflow suites
+  - name: jenkins_plugins_workflow_create
+    run_list: jenkins_plugins_workflow::create
+  - name: jenkins_plugins_workflow_delete
+    run_list: jenkins_plugins_workflow::delete

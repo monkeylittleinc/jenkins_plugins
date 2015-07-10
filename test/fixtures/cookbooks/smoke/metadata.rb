@@ -1,0 +1,6 @@
+name 'smoke'
+depends 'jenkins_plugins_git'
+depends 'jenkins_plugins_maven'
+depends 'jenkins_plugins_ssh_key'
+depends 'jenkins_plugins_ssh_config'
+depends 'jenkins_plugins_workflow'
