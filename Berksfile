@@ -8,4 +8,5 @@ group :integration do
   cookbook 'jenkins_plugins_ssh_config', path: 'test/fixtures/cookbooks/jenkins_plugins_ssh_config'
   cookbook 'jenkins_plugins_ssh_key', path: 'test/fixtures/cookbooks/jenkins_plugins_ssh_key'
   cookbook 'jenkins_plugins_workflow', path: 'test/fixtures/cookbooks/jenkins_plugins_workflow'
+  cookbook 'smoke', path: 'test/fixtures/cookbooks/smoke'
 end
