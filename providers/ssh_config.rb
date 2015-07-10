@@ -25,23 +25,29 @@
 #
 
 def whyrun_supported?
-  false
+  true
 end
 
 action :add do
-  ssh_config new_resource.name do
-    options new_resource.options
-    user node['jenkins']['master']['user']
-    group node['jenkins']['master']['group']
-    path "#{node['jenkins']['master']['home']}/.ssh/config"
+  converge_by("Add #{@new_resource}") do
+    add_config_value
   end
 end
 
 action :update do
-  ssh_config new_resource.name do
-    action :remove
+  converge_by("Update #{@new_resource}") do
+    remove_config_value
+    add_config_value
   end
+end
 
+action :remove do
+  converge_by("Remove #{@new_resource}") do
+    remove_config_value
+  end
+end
+
+def add_config_value
   ssh_config new_resource.name do
     options new_resource.options
     user node['jenkins']['master']['user']
@@ -50,7 +56,7 @@ action :update do
   end
 end
 
-action :remove do
+def remove_config_value
   ssh_config new_resource.name do
     action :remove
   end
