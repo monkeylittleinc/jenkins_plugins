@@ -1,25 +1,21 @@
-# Use Travis's cointainer based infrastructure
 sudo: false
 addons:
   apt:
     sources:
-      - chef-stable-precise
+    - chef-stable-precise
     packages:
-      - chefdk
-
+    - chefdk
 branches:
   only:
-    - master
-
-# Ensure we make ChefDK's Ruby the default
+  - master
 before_script:
-  - eval "$(/opt/chefdk/bin/chef shell-init bash)"
-  # We have to install chef-sugar for ChefSpec
-  - /opt/chefdk/embedded/bin/chef gem install chef-sugar
+- eval "$(/opt/chefdk/bin/chef shell-init bash)"
 script:
-  - /opt/chefdk/embedded/bin/chef --version
-  - /opt/chefdk/embedded/bin/rubocop --version
-  - /opt/chefdk/embedded/bin/rubocop
-  - /opt/chefdk/embedded/bin/foodcritic --version
-  - /opt/chefdk/embedded/bin/foodcritic . --exclude spec
-  - /opt/chefdk/embedded/bin/rspec spec --exclude-pattern 'spec/jenkins-plugins/**/*_spec.rb'
+- "/opt/chefdk/embedded/bin/chef --version"
+- "/opt/chefdk/embedded/bin/rubocop --version"
+- "/opt/chefdk/embedded/bin/rubocop"
+- "/opt/chefdk/embedded/bin/foodcritic --version"
+- "/opt/chefdk/embedded/bin/foodcritic . --exclude spec"
+notifications:
+  slack:
+    secure: cJPt6WaRAfS4ybvYJeuqbkJMNRUYgsbiwORrDfi2UkPPrIYsdpIAl8mRWNfVvTY2T7B+i4mgGD0L+4jEF5zeBSzf9G3vWDT1QZzFyah91Y6s6obhnptVOlFSlc6CNGfouLUFS3/ue+DYk6bqFRvFnYR/KYsyqeDQk7hz9Gnu1hEMyEm21PO0TMEKy349vMU5fZv+HFg5wnpAJAk4upjpAp6KU6bT96NqksCwUBv9fy7O6x8QOVl24anGFez0wK0vzvjdzXmOchflkv+vRIRW82CybNwZAVpeCm9Oi8wsD3Vm33rqITIMiOBLNDsM91fEF5ZKG3aOyf2Oy+Hv60ALvyT2VPJS1T6+ecbLVjJSch5rttsGehBWgrc8ZdxFpeJ8kdOcYqAWtVSlrjcqy0elIC21u1I+Pzt0KmuiB/3lwTYcWRcCF6wrG+H3XnWPUEaUMVO4gDZ7FUvLJuEJZ7T1kTaPga38IhT0DI4Fu/Kq3DBCQuP3HOQie8n53xSbHIm7nL8f7+g76skVNeu3LUupLij7X1tENRh+hdi4OFj09iUxOy7sZG48E9FVppBPjHtR4w87Be6Nv1Ro0CjNj2hdaIQJb8Ln4+J0VamRry+S254ObZjIjpyM2cr3+EJctl1besAR0y+3lHFurk4y+yiLzKqONBxHNJs3frSO9hLCEOY=

@@ -33,7 +33,8 @@ action :add do
     Chef::Log.info 'SSH key exists. Nothing to do'
   else
     converge_by("Create #{@new_resource}") do
-      add_key
+      create_directory_if_missing
+      add_or_update_key
     end
   end
 end
@@ -41,7 +42,7 @@ end
 action :update do
   if @current_resource.exists
     converge_by("Update #{@new_resource}") do
-      update_key
+      add_or_update_key
     end
   else
     Chef::Log.info 'SSH key doesn\'t exist. Nothing to update'
@@ -59,7 +60,7 @@ action :remove do
 end
 
 def load_current_resource
-  @current_resource = Chef::Resource::JenkinsPluginsSsh.new(@new_resource.name)
+  @current_resource = Chef::Resource::JenkinsPluginsSshKey.new(@new_resource.name)
   @current_resource.name(@new_resource.name)
   @current_resource.type(@new_resource.type)
 
@@ -70,18 +71,17 @@ def does_key_exist?
   ::File.exist?("#{node['jenkins']['master']['home']}/.ssh/id_#{@new_resource.type}_#{@new_resource.name}")
 end
 
-def add_key
-  file "#{node['jenkins']['master']['home']}/.ssh/id_#{@new_resource.type}_#{@new_resource.name}" do
+def create_directory_if_missing
+  directory "#{node['jenkins']['master']['home']}/.ssh" do
     owner node['jenkins']['master']['user']
     group node['jenkins']['master']['group']
-    content new_resource.key
-    sensitive true
-    mode '0600'
+    mode '0755'
+    recursive true
     action :create
   end
 end
 
-def update_key
+def add_or_update_key
   file "#{node['jenkins']['master']['home']}/.ssh/id_#{@new_resource.type}_#{@new_resource.name}" do
     owner node['jenkins']['master']['user']
     group node['jenkins']['master']['group']
