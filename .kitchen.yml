@@ -40,9 +40,9 @@ platforms:
 
 
 suites:
-  # Default
-  - name: default
-    run_list: jenkins_plugins::test
+  # Smoke suite
+  - name: smoke
+    run_list: smoke::default
 
   # Maven suites
   - name: jenkins_plugins_maven_install
