@@ -1,6 +1,6 @@
 require_relative '../../../kitchen/data/spec_helper'
 
-describe file('/var/lib/jenkins//hudson.plugins.git.GitTool.xml') do
+describe file('/var/lib/jenkins/hudson.plugins.git.GitTool.xml') do
   it { should exist }
   it { should be_file }
   it { should contain '<name>git-clone</name>' }

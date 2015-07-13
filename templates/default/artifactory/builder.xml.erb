@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<org.jfrog.hudson.ArtifactoryBuilder_-DescriptorImpl plugin="artifactory@<%= @version %>">
+  <artifactoryServers>
+    <org.jfrog.hudson.ArtifactoryServer>
+      <url><%= @url %></url>
+      <id><%= @id %></id>
+      <deployerCredentials>
+        <username><%= @username %></username>
+        <password><%= @password %></password>
+      </deployerCredentials>
+      <timeout><%= @timeout %></timeout>
+      <bypassProxy><%= @bypass_proxy %></bypassProxy>
+    </org.jfrog.hudson.ArtifactoryServer>
+  </artifactoryServers>
+</org.jfrog.hudson.ArtifactoryBuilder_-DescriptorImpl>
