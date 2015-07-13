@@ -85,7 +85,7 @@ def configure_artifactory_plugin
               bypass_proxy: new_resource.bypass_proxy)
   end
 
-  file "#{node['jenkins']['master']['home']}/jenkins.model.ArtifactManagerConfiguration.xml" do
+  cookbook_file "#{node['jenkins']['master']['home']}/jenkins.model.ArtifactManagerConfiguration.xml" do
     source 'artifactory/manager.xml'
     cookbook 'jenkins_plugins'
     owner node['jenkins']['master']['user']
@@ -116,5 +116,5 @@ def generate_id
   new_resource.url.chars.each_with_index do |ch, i|
     hash += ch.ord * (31**(size - (i + 1)))
   end
-  hash + '@' + DateTime.now.strftime('%Q')
+  hash.to_s + '@' + DateTime.now.strftime('%Q').to_s
 end
