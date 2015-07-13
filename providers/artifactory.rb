@@ -76,15 +76,13 @@ def configure_artifactory_plugin
     group node['jenkins']['master']['group']
     mode '0644'
     sensitive true
-    variables({
-      version: new_resource.version,
-      id: generate_id,
-      url: new_resource.url,
-      username: new_resource.username,
-      password: new_resource.password,
-      timeout: new_resource.timeout,
-      bypass_proxy: new_resource.bypass_proxy
-    })
+    variables(version: new_resource.version,
+              id: generate_id,
+              url: new_resource.url,
+              username: new_resource.username,
+              password: new_resource.password,
+              timeout: new_resource.timeout,
+              bypass_proxy: new_resource.bypass_proxy)
   end
 
   file "#{node['jenkins']['master']['home']}/jenkins.model.ArtifactManagerConfiguration.xml" do
@@ -111,13 +109,12 @@ def remove_artifactory_configuration
   end
 end
 
-
 # This nonsense reflects this: https://github.com/jenkinsci/artifactory-plugin/blob/master/src/main/java/org/jfrog/hudson/ArtifactoryServer.java#L89
 def generate_id
   size = new_resource.url.size
   hash = 0
   new_resource.url.chars.each_with_index do |ch, i|
-    hash += ch.ord * (31 ** (size-(i+1)))
+    hash += ch.ord * (31**(size - (i + 1)))
   end
   hash + '@' + DateTime.now.strftime('%Q')
 end
