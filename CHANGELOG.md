@@ -6,6 +6,9 @@
 ### Features
 - Added artifactory lwrp
 
+### Improvements
+- Added custom matchers for ChefSpec
+
 ### Bug fixes
 - Fixed tests for git
 
