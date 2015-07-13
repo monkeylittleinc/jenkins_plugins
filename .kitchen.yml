@@ -44,6 +44,14 @@ suites:
   - name: smoke
     run_list: smoke::default
 
+  # Artifactory suites
+  - name: jenkins_plugins_artifactory_install
+    run_list: jenkins_plugins_artifactory::install
+  - name: jenkins_plugins_artifactory_configure
+    run_list: jenkins_plugins_artifactory::configure
+  - name: jenkins_plugins_artifactory_remove
+    run_list: jenkins_plugins_artifactory::remove
+
   # Maven suites
   - name: jenkins_plugins_maven_install
     run_list: jenkins_plugins_maven::install

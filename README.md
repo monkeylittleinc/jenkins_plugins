@@ -10,13 +10,15 @@ This cookbook is designed to add an LWRPs around interacting with Jenkins Plugin
 ## Dependencies
 - `jenkins`
 - `maven`
+- `ssh`
 
 ## Plugins Available
 1. [Workflow](#jenkins_plugins_workflow)
 2. [Maven](#jenkins_plugins_maven)
 3. [Git](#jenkins_plugins_git)
-4. [SSH Keys](#jenkins_plugins_ssh_key)
-5. [SSH Config](#jenkins_plugins_ssh_config)
+4. [Artifactory](#jenkins_plugins_artifactory)
+5. [SSH Keys](#jenkins_plugins_ssh_key)
+6. [SSH Config](#jenkins_plugins_ssh_config)
 
 --------------------------------------------------------------------------------
 
@@ -43,7 +45,7 @@ end
 
 ```ruby
 jenkins_plugins_maven 'M3'
-    install false
+  install false
 end
 ```
 
@@ -54,14 +56,29 @@ end
 
 ```ruby
 jenkins_plugins_git 'git' do
-    install true
-    install_system false
-    global_name ''
-    global_email ''
-    create_account false
-    home 'git'
-    version ''
-    client_version ''
+  install true
+  install_system false
+  global_name ''
+  global_email ''
+  create_account false
+  home 'git'
+  version ''
+  client_version ''
+end
+```
+
+--------------------------------------------------------------------------------
+
+### jenkins_plugins_artifactory
+- [Artifactory Plugin Home](https://wiki.jenkins-ci.org/display/JENKINS/Artifactory+Plugin)
+
+```ruby
+jenkins_plugins_artifactory 'artifactory' do
+  url '' # Required
+  username ''
+  password ''
+  timeout 300
+  bypass_proxy false
 end
 ```
 
@@ -72,7 +89,7 @@ This LWRP is slightly out of key with everything else. It is not configuring any
 
 ```ruby
 jenkins_plugins_ssh 'name' do
-    type 'rsa' # Optional - Can be ['rsa', 'dsa', 'ecdsa']
+  type 'rsa' # Optional - Can be ['rsa', 'dsa', 'ecdsa']
 end
 ```
 
