@@ -77,7 +77,7 @@ def configure_artifactory_plugin
     mode '0644'
     sensitive true
     variables(version: new_resource.version,
-              id: generate_id,
+              id: new_resource.id,
               url: new_resource.url,
               username: new_resource.username,
               password: new_resource.password,
@@ -107,14 +107,4 @@ def remove_artifactory_configuration
   jenkins_plugin 'artifactory' do
     action :uninstall
   end
-end
-
-# This nonsense reflects this: https://github.com/jenkinsci/artifactory-plugin/blob/master/src/main/java/org/jfrog/hudson/ArtifactoryServer.java#L89
-def generate_id
-  size = new_resource.url.size
-  hash = 0
-  new_resource.url.chars.each_with_index do |ch, i|
-    hash += ch.ord * (31**(size - (i + 1)))
-  end
-  hash.to_s + '@' + DateTime.now.strftime('%Q').to_s
 end

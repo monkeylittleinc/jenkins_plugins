@@ -2,6 +2,10 @@
 
 --------------------------------------------------------------------------------
 
+## 1.2.1
+### Improvements
+- Add id attribute so it can be specified by wrapper cookbooks.
+
 ## 1.2.0
 ### Features
 - Added artifactory lwrp
