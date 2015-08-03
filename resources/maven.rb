@@ -28,7 +28,7 @@ actions :install, :configure, :remove
 
 default_action :install
 
-attribute :version, kind_of: Integer, default: 3
+attribute :version, kind_of: String, default: '3'
 attribute :maven_home, kind_of: String
 
 attr_accessor :exists
