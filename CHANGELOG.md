@@ -2,6 +2,10 @@
 
 --------------------------------------------------------------------------------
 
+## 1.2.2
+### Improvements
+- Maven version is now a string not an integer
+
 ## 1.2.1
 ### Improvements
 - Add id attribute so it can be specified by wrapper cookbooks.
