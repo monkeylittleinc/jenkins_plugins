@@ -32,7 +32,9 @@ action :install do
   converge_by("Install #{@new_resource}") do
     install_artifactory_plugin
     configure_artifactory_plugin
-    jenkins_command 'restart'
+    service 'jenkins' do
+      action :reload
+    end
   end
 end
 
@@ -46,7 +48,9 @@ action :remove do
   if @current_resource.exists
     converge_by("Remove #{@new_resource}") do
       remove_artifactory_configuration
-      jenkins_command 'restart'
+      service 'jenkins' do
+        action :reload
+      end
     end
   else
     Chef::Log.info 'Git not configured. Nothing to remove.'

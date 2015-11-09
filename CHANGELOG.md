@@ -1,6 +1,9 @@
 # CHANGELOG
 
 --------------------------------------------------------------------------------
+## 1.2.2
+### Improvements
+- Favour reload over restart when installing plugins
 
 ## 1.2.1
 ### Improvements

@@ -37,7 +37,9 @@ action :install do
       install_git_plugin
       configure_git_tool
       configure_git_global_user
-      jenkins_command 'restart'
+      service 'jenkins' do
+        action :reload
+      end
     end
   end
 end
@@ -45,7 +47,9 @@ end
 action :configure do
   converge_by("Configure #{@new_resource}") do
     remove_configuration
-    jenkins_command 'restart'
+    service 'jenkins' do
+      action :reload
+    end
   end
 end
 
@@ -53,7 +57,9 @@ action :remove do
   if @current_resource.exists
     converge_by("Remove #{@new_resource}") do
       remove_configuration
-      jenkins_command 'restart'
+      service 'jenkins' do
+        action :reload
+      end
     end
   else
     Chef::Log.info 'Git not configured. Nothing to remove.'

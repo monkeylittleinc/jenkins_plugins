@@ -31,14 +31,18 @@ end
 action :install do
   converge_by("Install #{@new_resource}") do
     install_and_configure
-    jenkins_command 'restart'
+    service 'jenkins' do
+      action :reload
+    end
   end
 end
 
 action :configure do
   converge_by("Configure #{@new_resource}") do
     configure_maven
-    jenkins_command 'restart'
+    service 'jenkins' do
+      action :reload
+    end
   end
 end
 
@@ -46,7 +50,9 @@ action :remove do
   if @current_resource.exists
     converge_by("Remove #{@new_resource}") do
       remove_configuration
-      jenkins_command 'restart'
+      service 'jenkins' do
+        action :reload
+      end
     end
   else
     Chef::Log.info 'Maven not configured. Nothing to rqemove.'
