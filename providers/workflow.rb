@@ -31,6 +31,9 @@ end
 action :create do
   converge_by("Create #{@new_resource}") do
     create_workflow_job
+    service 'jenkins' do
+      action :reload
+    end
   end
 end
 
@@ -54,7 +57,6 @@ def install_plugin
     action :install
     version new_resource.version
     install_deps true
-    notifies :restart, 'service[jenkins]', :immediately
   end
 end
 
