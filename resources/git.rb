@@ -34,7 +34,7 @@ attribute :global_name, kind_of: String, default: ''
 attribute :global_email, kind_of: String, default: ''
 attribute :create_account, kind_of: [TrueClass, FalseClass], default: false
 attribute :home, kind_of: String, default: 'git'
-attribute :version, kind_of: String, default: '2.3.5'
-attribute :client_version, kind_of: String, default: '1.16.1'
+attribute :version, kind_of: String, default: '2.4.0'
+attribute :client_version, kind_of: String, default: '1.19.0'
 
 attr_accessor :exists
