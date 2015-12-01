@@ -28,7 +28,7 @@ actions [:install, :configure, :remove]
 
 default_action :install
 
-attribute :version, kind_of: String, default: '2.4.4'
+attribute :version, kind_of: String, default: '2.3.0'
 attribute :id, kind_of: String, required: true
 attribute :url, kind_of: String, required: true
 attribute :username, kind_of: String, default: ''
