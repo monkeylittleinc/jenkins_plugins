@@ -14,6 +14,6 @@ gem 'berkshelf'
 #   gem "vagrant-omnibus", github: "schisamo/vagrant-omnibus"
 # end
 
-gem 'thor-foodcritic'
-gem 'test-kitchen'
 gem 'kitchen-vagrant'
+gem 'test-kitchen'
+gem 'thor-foodcritic'
