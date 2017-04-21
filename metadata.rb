@@ -8,7 +8,7 @@ version          '1.3.0'
 
 depends 'jenkins'
 depends 'maven', '4.0.1'
-depends 'ssh', '0.10.10'
+depends 'ssh', '0.10.20'
 
 issues_url 'https://github.com/monkeylittleinc/jenkins_plugins/issues'
 source_url 'https://github.com/monkeylittleinc/jenkins_plugins'
