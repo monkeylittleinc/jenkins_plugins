@@ -2,7 +2,7 @@
 # Cookbook Name:: jenkins_plugins
 # Provider:: git
 #
-# Copyright (C) 2015 Monkey Little
+# Copyright (C) 2017 Monkey Little
 #
 # Permission is hereby granted, free of charge, to any person obtaining
 # a copy of this software and associated documentation files (the
@@ -69,7 +69,7 @@ action :remove do
 end
 
 def load_current_resource
-  @current_resource = Chef::Resource::JenkinsPluginsGit.new(@new_resource.name)
+  @current_resource = Chef::Resource.resource_for_node(:jenkins_plugins_git, node).new(@new_resource.name)
   @current_resource.exists = git_configured? ? true : false
 end
 

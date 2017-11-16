@@ -3,6 +3,7 @@ source 'https://supermarket.chef.io'
 metadata
 
 group :integration do
+  cookbook 'java'
   cookbook 'jenkins_plugins_artifactory', path: 'test/fixtures/cookbooks/jenkins_plugins_artifactory'
   cookbook 'jenkins_plugins_git', path: 'test/fixtures/cookbooks/jenkins_plugins_git'
   cookbook 'jenkins_plugins_maven', path: 'test/fixtures/cookbooks/jenkins_plugins_maven'

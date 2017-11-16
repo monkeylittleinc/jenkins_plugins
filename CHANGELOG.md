@@ -1,6 +1,10 @@
 # CHANGELOG
 
 --------------------------------------------------------------------------------
+## 1.5.0
+### Improvements
+- Added Chef 13 support
+
 ## 1.2.2
 ### Improvements
 - Favour reload over restart when installing plugins

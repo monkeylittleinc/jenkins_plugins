@@ -14,28 +14,28 @@ provisioner:
   name: chef_zero
   data_path: test/shared
   data_bags_path: test/fixtures/data_bags
+  require_chef_omnibus: true
   attributes:
     jenkins:
       master:
-        version: 1.617-1.1
+        version: 1.643-1.1
+        channel: current
     maven:
       install_java: false
+    java:
+      install_flavor: openjdk
+      jdk_version: 8
 
 platforms:
-  - name: centos-6.5
-    box: chef/centos-6.5
+  - name: centos-6.8
+    box: bento/centos-6.8
     run_list:
-      - jenkins::java
+      - java::default
       - jenkins::master
-  - name: centos-6.6
-    box: chef/centos-6.6
+  - name: centos-7.3
+    box: bento/centos-7.3
     run_list:
-      - jenkins::java
-      - jenkins::master
-  - name: centos-7.0
-    box: chef/centos-7.0
-    run_list:
-      - jenkins::java
+      - java::default
       - jenkins::master
 
 
