@@ -2,7 +2,7 @@
 # Cookbook Name:: jenkins_plugins
 # Resource:: artifactory
 #
-# Copyright (C) 2015 Monkey Little
+# Copyright (C) 2017 Monkey Little
 #
 # Permission is hereby granted, free of charge, to any person obtaining
 # a copy of this software and associated documentation files (the
@@ -24,7 +24,7 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
 
-actions [:install, :configure, :remove]
+actions %i[install configure remove]
 
 default_action :install
 

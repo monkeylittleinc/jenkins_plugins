@@ -13,4 +13,4 @@ rescue LoadError
   puts '>>>>> Kitchen gem not loaded, omitting tasks' unless ENV['CI']
 end
 
-task default: [:rubocop, :foodcritic]
+task default: %i[rubocop foodcritic]

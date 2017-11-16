@@ -2,7 +2,7 @@
 # Cookbook Name:: jenkins_plugins
 # Resource:: maven
 #
-# Copyright (C) 2015 Monkey Little
+# Copyright (C) 2017 Monkey Little
 #
 # Permission is hereby granted, free of charge, to any person obtaining
 # a copy of this software and associated documentation files (the
@@ -28,7 +28,7 @@ actions :install, :configure, :remove
 
 default_action :install
 
-attribute :version, kind_of: Integer, default: 3
+attribute :version, kind_of: String, default: '3.3.9'
 attribute :maven_home, kind_of: String
 
 attr_accessor :exists

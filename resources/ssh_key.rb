@@ -2,7 +2,7 @@
 # Cookbook Name:: jenkins_plugins
 # Resource:: ssh_key
 #
-# Copyright (C) 2015 Monkey Little
+# Copyright (C) 2017 Monkey Little
 #
 # Permission is hereby granted, free of charge, to any person obtaining
 # a copy of this software and associated documentation files (the
@@ -24,11 +24,11 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
 
-actions [:add, :update, :remove]
+actions %i[add update remove]
 
 default_action :add
 
 attribute :key, kind_of: String
-attribute :type, equal_to: %w(dsa rsa ecdsa), default: 'rsa'
+attribute :type, equal_to: %w[dsa rsa ecdsa], default: 'rsa'
 
 attr_accessor :exists

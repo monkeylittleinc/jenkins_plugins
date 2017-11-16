@@ -4,8 +4,8 @@
 This cookbook is designed to add an LWRPs around interacting with Jenkins Plugins.
 
 ## Requirements
-- Chef 11 or higher
-- **Ruby 1.9.3 or higher**
+- Chef 12 or higher
+- **Ruby 2.1 or higher**
 
 ## Dependencies
 - `jenkins`
@@ -45,7 +45,9 @@ end
 
 ```ruby
 jenkins_plugins_maven 'M3'
-  install false
+  version ''
+  maven_home ''
+  action :install
 end
 ```
 
@@ -74,6 +76,7 @@ end
 
 ```ruby
 jenkins_plugins_artifactory 'artifactory' do
+  id '' # Required
   url '' # Required
   username ''
   password ''
@@ -123,7 +126,7 @@ Please see the [Contributing](CONTRIBUTING.md) and [Issue Reporting](ISSUES.md) 
 - Author: Sam Dunne [sam@sam-dunne.com](mailto:sam@sam-dunne.com)
 
 ```text
-Copyright (C) 2015 Monkey Little
+Copyright (C) 2017 Monkey Little
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the

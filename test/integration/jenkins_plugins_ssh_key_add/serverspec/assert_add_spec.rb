@@ -15,6 +15,6 @@ describe file('/var/lib/jenkins/.ssh/id_rsa_sam') do
     -----END RSA PRIVATE KEY-----
     KEY
   end
-  it { should be_mod '0600' }
+  it { should be_mode '600' }
   it { should be_owned_by 'jenkins' }
 end
